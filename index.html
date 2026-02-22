@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Dian 💖</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== FADE ANIMATION ===== */
+.fade {
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ===== HEADER ===== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ff4d6d;
+}
+
+nav a {
+  margin-left: 18px;
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* ===== CONTENT ===== */
+#content {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 110px 15px 30px;
+}
+
+.card {
+  background: white;
+  padding: 35px 30px;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  max-width: 460px;
+  width: 100%;
+}
+
+.photos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.photos img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ff4d6d;
+}
+
+.love {
+  font-size: 42px;
+  animation: beat 1s infinite;
+}
+
+@keyframes beat {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+h1 {
+  color: #ff4d6d;
+  margin-bottom: 15px;
+  font-size: 28px;
+}
+
+p {
+  font-size: 19px;
+  color: #444;
+  line-height: 1.6;
+}
+
+button {
+  margin-top: 12px;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+}
+
+#yes {
+  background: #ff4d6d;
+  color: white;
+}
+
+#yes:hover {
+  background: #e63950;
+  transform: scale(1.05);
+}
+
+#no {
+  background: #ddd;
+}
+
+/* ===== RESULT BOX ===== */
+.result-box {
+  border: 3px solid white;
+  padding: 45px 35px;
+  border-radius: 30px;
+  background: rgba(255,255,255,0.2);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 480px) {
+  h1 { font-size: 30px; }
+  p { font-size: 20px; }
+  .photos img { width: 120px; height: 120px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Vandra.com</div>
+  <nav>
+    <a onclick="showHome()">Home</a>
+    <a onclick="showAbout()">About</a>
+    <a onclick="showGallery()">Gallery</a>
+    <a onclick="showContact()">Contact</a>
+  </nav>
+</header>
+
+<div id="content" class="fade">
+  <div class="card">
+    <div class="photos">
+      <img src="ivan.jpg" alt="Ivan">
+      <div class="love">❤️</div>
+      <img src="dian.jpg" alt="Dian">
+    </div>
+
+    <h1>Hai Dian 😊</h1>
+
+    <p>
+      Aku suka sama kamu dan aku pengen jalin hubungan yang serius sama kamu
+      sampai ke jenjang pernikahan nanti hehe.<br><br>
+      <strong>Will you be my girlfriend? 😊</strong>
+    </p>
+
+    <button id="yes" onclick="yesClick()">Yes I will 💖</button>
+    <button id="no" onclick="noClick()">No I'm sorry 😔</button>
+  </div>
+</div>
+
+<!-- 🎵 MUSIK -->
+<audio id="bgMusic" loop>
+  <source src="lagu.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+music.volume = 0.25;
+
+function startMusic() {
+  music.play();
+  document.removeEventListener("click", startMusic);
+}
+document.addEventListener("click", startMusic);
+
+/* ===== HELPER FADE ===== */
+function fadeContent(html) {
+  const content = document.getElementById("content");
+  content.style.opacity = 0;
+
+  setTimeout(() => {
+    content.innerHTML = html;
+    content.classList.remove("fade");
+    void content.offsetWidth;
+    content.classList.add("fade");
+    content.style.opacity = 1;
+  }, 200);
+}
+
+/* ===== MENU (ISI SAMA) ===== */
+function showHome() {
+  location.reload();
+}
+
+function showAbout() {
+  fadeContent(`
+    <div class="result-box" style="color:white;">
+      <h1>About</h1>
+      <p style="font-size:18px;">
+        Website ini dibuat khusus oleh Ivan<br>
+        sebagai bentuk keseriusan dan perasaan tulus ❤️
+      </p>
+    </div>
+  `);
+}
+
+function showGallery() {
+  fadeContent(`
+    <div class="result-box">
+      <h1>Gallery</h1>
+      <p>Kenangan dan cerita indah akan ada di sini 📸</p>
+    </div>
+  `);
+}
+
+function showContact() {
+  fadeContent(`
+    <div class="result-box">
+      <h1>Contact</h1>
+      <p>
+        Instagram: @ivanpratikyo<br>
+        Email: ivan@email.com
+      </p>
+    </div>
+  `);
+}
+
+/* ===== YES / NO ===== */
+function yesClick() {
+  fadeContent(`
+    <div class="result-box" style="color:white;">
+      <h1>YEAY OFFICIALLY<br>IVAN & DIAN<br>22-02-2026 🎉❤️</h1>
+      <p style="font-size:22px;">
+        Makasih ya 😊💕<br>
+        Aku janji bakal serius sama kamu
+      </p>
+    </div>
+  `);
+}
+
+function noClick() {
+  fadeContent(`
+    <div class="result-box" style="color:#444;">
+      <h1>🙂</h1>
+      <p style="font-size:21px;">
+        Yaudah gpp aku hargai keputusanmu,<br>
+        mungkin di lain waktu kita berjodoh 😊
+      </p>
+    </div>
+  `);
+}
+</script>
+
+</body>
+</html>
